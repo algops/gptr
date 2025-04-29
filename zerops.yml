@@ -1,0 +1,34 @@
+project:
+  name: gpt-researcher
+  recipe: python
+
+services:
+  - name: api
+    type: python@3.11
+    buildFrom: .
+    build:
+      - pip install -r requirements.txt
+      - pip install apify-client
+    run: uvicorn main:app --host 0.0.0.0 --port 8000
+    env:
+      - name: SCRAPER
+        value: apify
+      - name: APIFY_API_KEY
+        value: ${APIFY_API_KEY}
+      - name: APIFY_SCRAPER_URL
+        value: ${APIFY_SCRAPER_URL:-https://rag-web-browser.apify.actor/search}
+      - name: APIFY_DATASET_LIMIT
+        value: ${APIFY_DATASET_LIMIT:-100}
+      - name: OPENAI_API_KEY
+        value: ${OPENAI_API_KEY}
+      - name: TAVILY_API_KEY
+        value: ${TAVILY_API_KEY}
+      - name: FIRECRAWL_API_KEY
+        value: ${FIRECRAWL_API_KEY}
+    ports:
+      - port: 8000
+        http: true
+    resources:
+      cpu: 2
+      memory: 2GB
+      disk: 10GB 

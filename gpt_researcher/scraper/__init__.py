@@ -6,6 +6,7 @@ from .browser.browser import BrowserScraper
 from .browser.nodriver_scraper import NoDriverScraper
 from .tavily_extract.tavily_extract import TavilyExtract
 from .firecrawl.firecrawl import FireCrawl
+from .apify.apify import ApifyScraper
 from .scraper import Scraper
 
 __all__ = [
@@ -16,6 +17,7 @@ __all__ = [
     "BrowserScraper",
     "NoDriverScraper",
     "TavilyExtract",
-    "Scraper",
     "FireCrawl",
+    "ApifyScraper",
+    "Scraper",
 ]

@@ -18,6 +18,7 @@ from . import (
     NoDriverScraper,
     TavilyExtract,
     FireCrawl,
+    ApifyScraper,
 )
 
 
@@ -39,6 +40,8 @@ class Scraper:
         if self.scraper == "tavily_extract":
             self._check_pkg(self.scraper)
         if self.scraper == "firecrawl":
+            self._check_pkg(self.scraper)
+        if self.scraper == "apify":
             self._check_pkg(self.scraper)
         self.logger = logging.getLogger(__name__)
         self.worker_pool = worker_pool
@@ -68,6 +71,10 @@ class Scraper:
             "firecrawl": {
                 "package_installation_name": "firecrawl-py",
                 "import_name": "firecrawl",
+            },
+            "apify": {
+                "package_installation_name": "apify-client",
+                "import_name": "apify_client",
             },
         }
         pkg = pkg_map[scrapper_name]
@@ -176,6 +183,7 @@ class Scraper:
             "nodriver": NoDriverScraper,
             "tavily_extract": TavilyExtract,
             "firecrawl": FireCrawl,
+            "apify": ApifyScraper,
         }
 
         scraper_key = None

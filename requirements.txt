@@ -29,6 +29,7 @@ json_repair
 json5
 loguru
 langgraph
+apify-client
 
 # uncomment for testing
 # pytest
